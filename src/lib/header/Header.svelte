@@ -2,6 +2,7 @@
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
+      <li><a href="/monero-grampy">Monero Grampy</a></li>
       <li><a href="/monero-head">Monero Head</a></li>
       <li><a href="/monero-dynamic">Monero Dynamic</a></li>
       <li><a href="/monero-import">Monero Import</a></li>
