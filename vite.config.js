@@ -15,7 +15,7 @@ export default defineConfig({
         targets: [
           {
             src: "node_modules/monero-javascript/dist/*.{js,wasm,map}",
-            dest: "static/monero-javascript/dist",
+            dest: "static/",
           },
         ],
       }),
