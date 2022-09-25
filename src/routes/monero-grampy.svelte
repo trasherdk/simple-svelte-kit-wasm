@@ -29,11 +29,12 @@
 
   /**
    */
+  let version: string;
 </script>
 
 <h1>Simple wasm: Monero (Grampy) Import</h1>
 {#if typeof monerojs.LibraryUtils.loadKeysModule == "function"}
-  <p>monerojs loaded...</p>
+  <p>monerojs loaded: version {version}</p>
 {:else}
   <p>Unresolved</p>
 {/if}
