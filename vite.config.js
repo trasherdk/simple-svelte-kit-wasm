@@ -14,7 +14,7 @@ export default defineConfig({
       ...copy({
         targets: [
           {
-            src: "node_modules/monero-javascript/dist/*.{js,wasm,map}",
+            src: "node_modules/monero-javascript/dist/**.{js,wasm}",
             dest: "static/",
           },
         ],
@@ -40,8 +40,8 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ["request", "request-promise"],
-    exclude: ["monero-javascript"],
+    include: [/**"request", "request-promise"**/],
+    exclude: [/**"monero-javascript",**/],
     esbuildOptions: {
       define: {
         global: "globalThis",
