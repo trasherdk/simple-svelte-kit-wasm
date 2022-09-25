@@ -15,35 +15,35 @@ type MoneroRpcConfig = {
 
 declare module "monero-javascript" {
   declare namespace LibraryUtils {
-    function loadFullModule(): Promise<MoneroWalletFull>;
-    function loadKeysModule(): Promise<MoneroWalletKeys>;
+    function loadFullModule (): Promise<MoneroWalletFull>;
+    function loadKeysModule (): Promise<MoneroWalletKeys>;
   }
 
   declare class MoneroConnectionManager {
-    constructor(proxy: boolean);
+    constructor (proxy: boolean);
 
-    addListener(
+    addListener (
       listener: MoneroConnectionManagerListener
     ): MoneroConnectionManager;
-    setTimeout(timeoutInMs: number): MoneroConnectionManager;
-    setConnection(
+    setTimeout (timeoutInMs: number): MoneroConnectionManager;
+    setConnection (
       uriOrConnection: MoneroRpcConnection | string
     ): MoneroConnectionManager;
-    getConnection(): MoneroRpcConnection;
-    getConnections(): MoneroRpcConnection[];
-    clear(): MoneroConnectionManager;
+    getConnection (): MoneroRpcConnection;
+    getConnections (): MoneroRpcConnection[];
+    clear (): MoneroConnectionManager;
 
     //defaults to 10000 i.e. 10 seconds
-    startCheckingConnection(
+    startCheckingConnection (
       periodMs?: number
     ): Promise<MoneroConnectionManager>;
   }
 
-  export function connectToDaemonRpc(
+  export function connectToDaemonRpc (
     uriOrConfigOrConnection: MoneroRpcConnection
   ): MoneroDaemonRpc;
 
-  export function createWalletFull(config: {
+  export function createWalletFull (config: {
     path?: string;
     password?: string;
     networkType?: string | number;
@@ -70,16 +70,16 @@ declare module "monero-javascript" {
   }
 
   declare class MoneroTxWallet {
-    getReceivedTimestamp(): number;
-    getFee(): BigInteger;
-    getIncomingAmount(): BigInteger;
-    getHeight(): number;
-    getHash(): string;
-    isConfirmed(): boolean;
+    getReceivedTimestamp (): number;
+    getFee (): BigInteger;
+    getIncomingAmount (): BigInteger;
+    getHeight (): number;
+    getHash (): string;
+    isConfirmed (): boolean;
   }
 
   declare class MoneroRpcConnection {
-    constructor(
+    constructor (
       uriOrConfigOrConnection: string | MoneroRpcConfig | object,
       username?: string,
       password?: string,
@@ -89,93 +89,94 @@ declare module "monero-javascript" {
   }
 
   declare class MoneroDaemonRpc {
-    async getBlockHeaderByHeight(height: number): Promise<MoneroBlockHeader>;
-    async getRpcConnection(): Promise<MoneroRpcConnection>;
-    async getHeight(): Promise<number>;
-    async isConnected(): Promise<boolean>;
+    async getBlockHeaderByHeight (height: number): Promise<MoneroBlockHeader>;
+    async getRpcConnection (): Promise<MoneroRpcConnection>;
+    async getHeight (): Promise<number>;
+    async isConnected (): Promise<boolean>;
   }
 
   declare class MoneroBlockHeader {
-    getTimestamp(): number;
+    getTimestamp (): number;
   }
 
   declare namespace MoneroUtils {
-    function validatePrivateViewKey(viewKey: string): void;
-    function isValidAddress(
+    function validatePrivateViewKey (viewKey: string): void;
+    function isValidAddress (
       address: string,
       networkType: MoneroNetworkType
     ): boolean;
-    function atomicUnitsToXmr(amount: string | BigInteger): number;
-    function xmrToAtomicUnits(amount: string | number): BigInteger;
+    function atomicUnitsToXmr (amount: string | BigInteger): number;
+    function xmrToAtomicUnits (amount: string | number): BigInteger;
+    function getVersion (): string;
   }
 
   declare class MoneroIncomingTransfer {
-    getTx(): MoneroTx;
-    getAmount(): BigInteger
+    getTx (): MoneroTx;
+    getAmount (): BigInteger
   }
 
   declare class MoneroTx {
-    getNumConfirmations(): number;
+    getNumConfirmations (): number;
   }
 
   declare class MoneroIntegratedAddress {
-    getIntegratedAddress(): string;
-    getPaymentId(): string;
-    getStandardAddress(): string;
+    getIntegratedAddress (): string;
+    getPaymentId (): string;
+    getStandardAddress (): string;
   }
 
   declare class MoneroWalletFull {
-    async setDaemonConnection(
+    async setDaemonConnection (
       uriOrConnection: string | MoneroDaemonRpc,
       username?: string,
       password?: string
     ): Promise<MoneroRpcConnection>;
-    async getPrimaryAddress(): Promise<string>;
-    async getDaemonHeight(): Promise<number>;
-    async setSyncHeight(height: number): Promise<number>;
-    async getIntegratedAddress(
+    async getPrimaryAddress (): Promise<string>;
+    async getDaemonHeight (): Promise<number>;
+    async setSyncHeight (height: number): Promise<number>;
+    async getIntegratedAddress (
       paymentId?: string
     ): Promise<MoneroIntegratedAddress>;
-    async addListener(listener: MoneroWalletListener): Promise<void>;
-    async sync(
+    async addListener (listener: MoneroWalletListener): Promise<void>;
+    async sync (
       listener: any,
       startHeight: any,
       allowConcurrentCalls: bool
     ): Promise<any>;
-    async startSyncing(syncPeriod: any): Promise<void>;
-    async isSynced(): Promise<boolean>;
-    async getHeightByDate(
+    async startSyncing (syncPeriod: any): Promise<void>;
+    async isSynced (): Promise<boolean>;
+    async getHeightByDate (
       year: number,
       month: number,
       day: number
     ): Promise<number>;
-    async getTx(hash: string): Promise<MoneroTxWallet>;
-    async getTxs(query: any): Promise<MoneroTxWallet[]>;
-    async getPrivateViewKey(): Promise<string>;
-    async getIncomingTransfers(query: any): Promise<MoneroIncomingTransfer[]>;
-    async getAddress(accountIdx: int, subaddressIdx: int): Promise<string>;
-    async stopSyncing(): Promise<void>;
-    async close(): Promise<void>;
+    async getTx (hash: string): Promise<MoneroTxWallet>;
+    async getTxs (query: any): Promise<MoneroTxWallet[]>;
+    async getPrivateViewKey (): Promise<string>;
+    async getIncomingTransfers (query: any): Promise<MoneroIncomingTransfer[]>;
+    async getAddress (accountIdx: int, subaddressIdx: int): Promise<string>;
+    async stopSyncing (): Promise<void>;
+    async close (): Promise<void>;
   }
 
   declare class MoneroWalletListener {
-    async onBalancesChanged(
+    async onBalancesChanged (
       newBalance: BigInteger,
       newUnlockedBalance: BigInteger
     );
   }
 
   declare class MoneroOutputWallet {
-    getTx(): any;
-    getAmount(): any;
+    getTx (): any;
+    getAmount (): any;
   }
 
-  declare class MoneroTxQuery {}
+  declare class MoneroTxQuery { }
   //function BigInteger(n: number): Uint8Array;
 
   declare class BigInteger {
-    BigInteger(): Uint8Array;
-    BigInteger(n: number): Uint8Array;
+    BigInteger (): Uint8Array;
+    BigInteger (n: number): Uint8Array;
   }
 
   module.exports = MoneroWalletFull;
